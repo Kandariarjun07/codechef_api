@@ -6,14 +6,14 @@
   directory = "netlify/functions"
 
 [functions."rating"]
-  runtime = "python3.8"
+  runtime = "python3.11"
 
 [[redirects]]
-  from = "/"
-  to = "/.netlify/functions/rating"
+  from = "/user/:username"
+  to = "/.netlify/functions/rating?username=:username"
   status = 200
 
 [[redirects]]
-  from = "/:username"
+  from = "/api/:username"
   to = "/.netlify/functions/rating?username=:username"
   status = 200

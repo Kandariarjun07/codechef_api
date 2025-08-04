@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeChef Rating API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .code {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .example {
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏆 Unofficial CodeChef Rating API</h1>
+    
+    <p>Welcome to the unofficial CodeChef Rating API! This service allows you to fetch CodeChef user ratings and statistics programmatically.</p>
+    
+    <h2>📖 Usage</h2>
+    
+    <h3>Get User Rating</h3>
+    <div class="code">
+        GET /user/{username}
+    </div>
+    
+    <div class="example">
+        <strong>Example:</strong><br>
+        <code>GET /user/gennady</code><br>
+        <small>Replace "gennady" with any CodeChef username</small>
+    </div>
+    
+    <h3>Response Format</h3>
+    <div class="code">
+{
+  "username": "gennady",
+  "status": "Success",
+  "currentRating": 3500,
+  "peakRating": 3600,
+  "ratingHistory": [...]
+}
+    </div>
+    
+    <h2>🚀 Try It Out</h2>
+    <p>Click the links below to test the API:</p>
+    <ul>
+        <li><a href="/user/gennady" target="_blank">Get gennady's rating</a></li>
+        <li><a href="/user/tourist" target="_blank">Get tourist's rating</a></li>
+        <li><a href="/user/your_username" target="_blank">Replace with your CodeChef username</a></li>
+    </ul>
+    
+    <h2>📝 Notes</h2>
+    <ul>
+        <li>This is an unofficial API and is not affiliated with CodeChef</li>
+        <li>Data is fetched directly from CodeChef's public profile pages</li>
+        <li>Rate limiting may apply based on CodeChef's policies</li>
+        <li>Users with private profiles will return an error</li>
+    </ul>
+    
+    <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #666;">
+        <p>Made with ❤️ for the competitive programming community</p>
+    </footer>
+</body>
+</html>

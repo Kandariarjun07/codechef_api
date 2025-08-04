@@ -30,7 +30,9 @@ def handler(event, context):
     This is the main entry point for the Netlify Function.
     It processes the incoming request and returns a JSON response.
     """
-    username = event.get('queryStringParameters', {}).get('username')
+    # Handle case where queryStringParameters might be None
+    query_params = event.get('queryStringParameters') or {}
+    username = query_params.get('username')
 
     # --- THIS IS THE MODIFIED LOGIC ---
     # If no username is provided (which happens when the root URL is hit),
