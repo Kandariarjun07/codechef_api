@@ -3,16 +3,16 @@
   publish = "."
 
 [functions]
-  directory = "netlify/functions/"
+  directory = "netlify/functions"
 
-# This rule handles the root URL for instructions
+[functions."rating"]
+  runtime = "python3.8"
+
 [[redirects]]
   from = "/"
   to = "/.netlify/functions/rating"
   status = 200
 
-# This is the CRUCIAL rule for the URL you are using.
-# It captures any path like "/kandari_arjun"
 [[redirects]]
   from = "/:username"
   to = "/.netlify/functions/rating?username=:username"
