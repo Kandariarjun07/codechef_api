@@ -1,9 +1,21 @@
 [build]
-  command = "pip install -r requirements.txt"
+  command = "python -m pip install --upgrade pip && pip install -r requirements.txt"
   publish = "."
 
 [functions]
   directory = "netlify/functions"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+
+[[redirects]]
+  from = "/hello"
+  to = "/.netlify/functions/hello"
+  status = 200
 
 [[redirects]]
   from = "/user/:username"
