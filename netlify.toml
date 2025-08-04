@@ -5,7 +5,16 @@
 [functions]
   directory = "netlify/functions/"
 
+# Rule 1: Handle the root path. This MUST come first.
+# When a user visits "/", it runs the rating function without any parameters.
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/"
+  to = "/.netlify/functions/rating"
+  status = 200
+
+# Rule 2: Handle requests for a specific user.
+# This uses the /user/ prefix to avoid conflicts.
+[[redirects]]
+  from = "/user/:username"
+  to = "/.netlify/functions/rating?username=:username"
   status = 200

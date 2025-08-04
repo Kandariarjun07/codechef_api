@@ -3,6 +3,9 @@ import re
 import requests
 
 def get_codechef_data(username):
+    """
+    Fetches a user's profile page and extracts the embedded rating data JSON.
+    """
     url = f"https://www.codechef.com/users/{username}"
     headers = {'User-Agent': 'Mozilla/5.0'}
     
@@ -23,15 +26,28 @@ def get_codechef_data(username):
         return None, f"An unexpected error occurred: {str(e)}"
 
 def handler(event, context):
+    """
+    This is the main entry point for the Netlify Function.
+    It processes the incoming request and returns a JSON response.
+    """
     username = event.get('queryStringParameters', {}).get('username')
 
+    # --- THIS IS THE MODIFIED LOGIC ---
+    # If no username is provided (which happens when the root URL is hit),
+    # return a helpful welcome message instead of an error.
     if not username:
+        welcome_message = {
+            "message": "Welcome to the Unofficial CodeChef Rating API!",
+            "usage": "To get a user's rating, use the /user/<username> path.",
+            "example": "https://<your-site-name>.netlify.app/user/gennady"
+        }
         return {
-            'statusCode': 400,
+            'statusCode': 200, # Return 200 OK
             'headers': {'Content-Type': 'application/json'},
-            'body': json.dumps({'error': 'Username parameter is required.'})
+            'body': json.dumps(welcome_message, indent=2)
         }
 
+    # The rest of the function continues as before if a username is present
     user_data, error = get_codechef_data(username)
 
     if error:
