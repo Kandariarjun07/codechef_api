@@ -5,9 +5,6 @@
 [functions]
   directory = "netlify/functions"
 
-[functions."rating"]
-  runtime = "python3.11"
-
 [[redirects]]
   from = "/user/:username"
   to = "/.netlify/functions/rating?username=:username"
