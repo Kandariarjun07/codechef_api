@@ -60,8 +60,19 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Get username from query parameters
-        const username = event.queryStringParameters?.username;
+        // Debug: Log the entire event to see what we're receiving
+        console.log('Event:', JSON.stringify(event, null, 2));
+
+        // Get username from query parameters or path
+        let username = event.queryStringParameters?.username;
+
+        // If no username in query params, try to extract from path
+        if (!username && event.path) {
+            const pathMatch = event.path.match(/\/rating\/(.+)$/);
+            if (pathMatch) {
+                username = pathMatch[1];
+            }
+        }
 
         // If no username provided, return welcome message
         if (!username) {

@@ -5,11 +5,19 @@
   directory = "netlify/functions"
 
 [[redirects]]
+  from = "/user/*"
+  to = "/.netlify/functions/rating/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/rating/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/user/:username"
   to = "/.netlify/functions/rating?username=:username"
   status = 200
-
-[[redirects]]
-  from = "/api/:username"
-  to = "/.netlify/functions/rating?username=:username"
-  status = 200
+  force = true
